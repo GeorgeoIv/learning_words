@@ -4,8 +4,10 @@ import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import Header from './Header';
 import MainPage from './MainPage';
+import Themes from './Themes';
+import Words from './Words';
 
-export default function App({ user }) {
+export default function App({ user, themes, words }) {
   const [currentUser, setCurrentUser] = useState(user || null);
   return (
     <div>
@@ -14,6 +16,9 @@ export default function App({ user }) {
         <Route path="/" element={<MainPage />} />
         <Route path="/auth/signup" element={<SignUpForm />} />
         <Route path="/auth/signin" element={<SignInForm />} />
+        <Route path="/themes" element={<Themes themes={themes} />} />
+        <Route path="/:theme" element={<Words words={words} />} />
+
       </Routes>
     </div>
   );
