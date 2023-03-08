@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import SignInForm from './SignInForm';
-import SignUpForm from './SignUpForm';
+import SignInForm from './Auth/SignInForm';
+import SignUpForm from './Auth/SignUpForm';
 import Header from './Header';
 import MainPage from './MainPage';
 
@@ -9,9 +9,9 @@ export default function App({ user }) {
   const [currentUser, setCurrentUser] = useState(user || null);
   return (
     <div>
-      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      {currentUser && <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />}
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<SignInForm />} />
         <Route path="/auth/signup" element={<SignUpForm />} />
         <Route path="/auth/signin" element={<SignInForm />} />
       </Routes>
