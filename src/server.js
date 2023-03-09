@@ -4,7 +4,7 @@ import path from 'path';
 import session from 'express-session';
 import store from 'session-file-store';
 import indexRouter from './routes/indexRouter';
-// import apiRouter from './routes/apiRouter';
+import apiRouter from './routes/apiRouter';
 import apiAuthRouter from './routes/apiAuthRouter';
 import authRouter from './routes/authRouter';
 import jsxRender from './utils/jsxRender';
@@ -46,5 +46,6 @@ app.use('/', indexRouter);
 // app.use('/api/v1', isAuthApi, apiRouter);
 app.use('/auth', authRouter);
 app.use('/api/auth', apiAuthRouter);
+app.use('/api', apiRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
