@@ -1,5 +1,5 @@
 import React from 'react';
-import OneWord from './OneTheme';
+import OneWord from './OneWord';
 
 export default function Words({ words }) {
   return (

@@ -3,40 +3,37 @@ import { Theme, Word, Quiz } from '../../db/models';
 
 const router = express.Router();
 
-router.get('/themes', async (req, res) => {
-  try {
-    const themes = Theme.findAll();
-    res.render('Layout', { themes });
-  } catch {
-    res.sendStatus(500);
-  }
-});
+// router.get('/themes', async (req, res) => {
+//   try {
+//     const themes = await Theme.findAll();
+//     res.render('Layout', { themes });
+//   } catch {
+//     res.sendStatus(500);
+//   }
+// });
 
-router.get('/:theme', async (req, res) => {
-  try {
-    const { theme } = req.body;
+// router.get('/:theme', async (req, res) => {
+//   try {
+//     const { theme } = req.params;
+//     const ourTheme = await Theme.findOne({ where: { title: theme } });
+//     const words = await Word.findAll({ where: { theme_id: ourTheme.id } });
+//     res.render('Layout', { words });
+//   } catch {
+//     res.sendStatus(500);
+//   }
+// });
 
-    const ourTheme = await Theme.findOne({ where: { title: theme } });
-    const words = await Word.findAll({ where: { id: ourTheme.id } });
-    res.render('Layout', { words });
-  } catch {
-    res.sendStatus(500);
-  }
-});
-
-router.post('/words', async (req, res) => {
-  try {
-    await Quiz.findOrCreate({
-      where: { word_id: req.body.word.id },
-      defaults: {
-        word_id: req.body.word.id,
-        // user_id: req.session.id,
-        // thems_id
-      },
-    });
-  } catch {
-    res.sendStatus(500);
-  }
-});
+// router.post('/words', async (req, res) => {
+//   try {
+//     console.log(req.body);
+//     await Quiz.create({
+//       user_id: 1,
+//       word_id: req.body.id,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.sendStatus(500);
+//   }
+// });
 
 export default router;
