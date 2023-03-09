@@ -16,8 +16,8 @@ export default function App({ user, themes, words }) {
         <Route path="/" element={<SignInForm />} />
         <Route path="/auth/signup" element={<SignUpForm />} />
         <Route path="/auth/signin" element={<SignInForm />} />
-        <Route path="themes" element={<Themes themes={themes} />} />
-        <Route path="/:theme" element={<Words words={words} />} />
+        <Route path="themes" element={<Themes themes={themes} currentUser={currentUser} />} />
+        <Route path="/:theme" element={<Words words={words} currentUser={currentUser} />} />
 
       </Routes>
     </div>

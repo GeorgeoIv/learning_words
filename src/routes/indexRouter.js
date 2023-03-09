@@ -1,5 +1,8 @@
 import express from 'express';
 import { Theme, Word, Quiz } from '../../db/models';
+import {
+  isAuth, urlSession,
+} from '../middlewares';
 
 const router = express.Router();
 
@@ -7,7 +10,7 @@ router.get('/', (req, res) => {
   res.render('Layout', {});
 });
 
-router.get('/themes', async (req, res) => {
+router.get('/themes', isAuth, async (req, res) => {
   try {
     const themes = await Theme.findAll();
     res.render('Layout', { themes });
