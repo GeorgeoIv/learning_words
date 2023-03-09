@@ -43,7 +43,7 @@ app.use(session(sessionConfig));
 app.use(urlSession);
 
 app.use('/', indexRouter);
-// app.use('/api/v1', isAuthApi, apiRouter);
+// app.use('/api/v1',  apiRouter);
 app.use('/auth', authRouter);
 app.use('/api/auth', apiAuthRouter);
 app.use('/api', apiRouter);

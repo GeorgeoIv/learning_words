@@ -23,6 +23,7 @@ function Header({ currentUser, setCurrentUser }) {
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="/">Home</a>
                   <a className="nav-link active" aria-current="page" href="/themes">Themes</a>
+                  <a className="nav-link active" aria-current="page" href="/new">Add</a>
                 </li>
               </ul>
             </div>

@@ -1,11 +1,14 @@
 import React from 'react';
 import OneTheme from './OneTheme';
 
-export default function Themes({ themes }) {
+export default function Themes({ themes, currentUser }) {
   return (
-    <div>
+    <div className="row">
       <h1>Choose the theme</h1>
-      {themes?.map((el) => <OneTheme theme={el} key={el.id} />)}
+      {currentUser ? (
+        themes?.map((el) => <OneTheme theme={el} key={el.id} />)
+      )
+        : (<h1>вас тут нет</h1>)}
     </div>
   );
 }
