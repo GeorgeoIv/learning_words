@@ -21,7 +21,7 @@ export default function Add({ themes }) {
         <input name="rus" className="form-control" type="text" placeholder="word in eng" aria-label="default" />
         <input name="eng" className="form-control" type="text" placeholder="word in ru" aria-label="default" />
         <input name="img" className="form-control" type="text" placeholder="img" aria-label="default" />
-        <button type="button" className="btn btn-primary">Добавить</button>
+        <button type="submit" className="btn btn-primary">Добавить</button>
       </h3>
 
     </form>

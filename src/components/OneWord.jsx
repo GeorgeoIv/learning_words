@@ -5,14 +5,17 @@ export default function OneWord({ word, setAllWords }) {
   console.log(word);
   const [isClicked, setClick] = useState(false);
   const learnHandler = async (id) => {
+    // e.stopPropagation();
     setAllWords((prev) => prev.filter((el) => el.id !== id));
     await axios.post('api/words', word);
   };
-  const clickHandler = async () => {
+
+  const clickHandler = async (e) => {
+    e.stopPropagation();
     setClick((prev) => !prev);
   };
   return (
-    <div className="card" style={{ width: '18rem' }}>
+    <div className="card" onClick={clickHandler} style={{ width: '18rem' }}>
       <img src={`${word.img}`} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{`${word.rus}`}</h5>
