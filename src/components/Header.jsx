@@ -21,7 +21,7 @@ function Header({ currentUser, setCurrentUser }) {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">Home</a>
+                  {/* <a className="nav-link active" aria-current="page" href="/">Home</a> */}
                   <a className="nav-link active" aria-current="page" href="/themes">Themes</a>
                   <a className="nav-link active" aria-current="page" href="/new">Add</a>
                 </li>
@@ -31,14 +31,14 @@ function Header({ currentUser, setCurrentUser }) {
               ? (
                 <ul className="navbar-nav">
                   <li className="nav-item d-flex align-items-center me-4">
-                    <span aria-current="page">
+                    <a aria-current="page" href="/profile" className="nav-link active">
                       Hello,
                       {' '}
                       {currentUser.name}
-                    </span>
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <button type="button" className="btn btn-success" onClick={logoutHandler}>LogOut</button>
+                    <button type="button" className="btn btn-primary" onClick={logoutHandler}>LogOut</button>
                   </li>
                 </ul>
               )
