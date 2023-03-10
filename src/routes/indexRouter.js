@@ -1,40 +1,36 @@
-import { all } from 'axios';
-import express from 'express';
-import {
-  Theme, Word, Quiz,
-} from '../../db/models';
-import {
-  isAuth, urlSession,
-} from '../middlewares';
+import { all } from "axios";
+import express from "express";
+import { Theme, Word, Quiz } from "../../db/models";
+import { isAuth, urlSession } from "../middlewares";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   if (req.session.user) {
-    res.redirect('/themes');
+    res.redirect("/themes");
   } else {
-    res.redirect('auth/signin');
+    res.redirect("auth/signin");
   }
   // res.render('Layout', {});
 });
 
-router.get('/new', async (req, res) => {
+router.get("/new", async (req, res) => {
   try {
     const themes = await Theme.findAll();
-    res.render('Layout', { themes });
+    res.render("Layout", { themes });
   } catch {
     res.sendStatus(500);
   }
 });
 
-router.get('/profile', async (req, res) => {
+router.get("/profile", async (req, res) => {
   try {
     // const learned = await Quiz.findAll({ where: { user_id: req.session.user.id } }, {
     //   include: [
     //     { model: Word },
     //   ],
     // });
-
+    const themes = await Theme.findAll();
     const learned = await Quiz.findAll({
       where: { user_id: req.session.user.id },
       include: [
@@ -52,32 +48,36 @@ router.get('/profile', async (req, res) => {
         },
       ],
     });
-    const initState = { learned, allWords };
+    const initState = { learned, allWords, themes };
 
-    res.render('Layout', initState);
+    res.render("Layout", initState);
   } catch {
     res.sendStatus(500);
   }
 });
 
-router.get('/themes', isAuth, async (req, res) => {
+router.get("/themes", isAuth, async (req, res) => {
   try {
     const themes = await Theme.findAll();
-    res.render('Layout', { themes });
+    res.render("Layout", { themes });
   } catch {
     res.sendStatus(500);
   }
 });
 
-router.get('/:theme', async (req, res) => {
+router.get("/:theme", async (req, res) => {
   try {
     const { theme } = req.params;
     const ourTheme = await Theme.findOne({ where: { title: theme } });
     const words1 = await Word.findAll({ where: { theme_id: ourTheme.id } });
-    const learned = await Quiz.findAll({ where: { user_id: req.session.user.id } });
-    const words = words1.filter((el) => !learned.some((word2) => el.id === word2.word_id));
+    const learned = await Quiz.findAll({
+      where: { user_id: req.session.user.id },
+    });
+    const words = words1.filter(
+      (el) => !learned.some((word2) => el.id === word2.word_id)
+    );
 
-    res.render('Layout', { words });
+    res.render("Layout", { words });
   } catch {
     res.sendStatus(500);
   }
