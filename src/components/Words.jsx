@@ -9,9 +9,11 @@ export default function Words({ words }) {
   //   axios(`/api/theme/${words[0].theme_id}`).then(({ data }) => setAllWords(data)).catch(console.log);
   // }, []);
   return (
-    <div className="row">
+    <>
       <h1>Choose the word</h1>
-      {allWords?.map((el) => <OneWord setAllWords={setAllWords} word={el} key={el.id} />)}
-    </div>
+      <div className="row">
+        {allWords?.map((el) => <div key={el.id} className="col-4"><OneWord setAllWords={setAllWords} word={el} key={el.id} /></div>)}
+      </div>
+    </>
   );
 }

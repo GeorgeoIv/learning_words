@@ -15,18 +15,21 @@ export default function OneWord({ word, setAllWords }) {
     setClick((prev) => !prev);
   };
   return (
-    <div className="card" onClick={clickHandler} style={{ width: '18rem' }}>
-      <img src={`${word.img}`} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title">{`${word.rus}`}</h5>
-        {isClicked ? (
-          <p className="card-text">{`${word.eng}`}</p>)
-          : (
-            <p>нажми если не знаешь перевод</p>)}
+    <label>
+      <input type="checkbox" />
+      <div className="card card1" onClick={clickHandler} style={{ width: '18rem' }}>
+        <img src={`${word.img}`} className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title front">{`${word.rus}`}</h5>
+          {isClicked ? (
+            <p className="card-text back">{`${word.eng}`}</p>)
+            : (
+              <p>нажми если не знаешь перевод</p>)}
 
-        <button type="button" className="btn btn-success" name="word" onClick={() => learnHandler(word.id)}>Изучено</button>
+          <button type="button" className="btn btn-success" name="word" onClick={() => learnHandler(word.id)}>Изучено</button>
+        </div>
       </div>
-    </div>
 
+    </label>
   );
 }
