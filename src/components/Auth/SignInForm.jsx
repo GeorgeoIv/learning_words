@@ -16,7 +16,7 @@ export default function SignInForm() {
     })
       .then((response) => {
         if (response.ok) {
-          window.location = '/';
+          window.location = '/themes';
         }
       });
   };
@@ -51,9 +51,9 @@ export default function SignInForm() {
               />
             </label>
           </div>
-          <button type="submit" className="btn btn-success">Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
-        <div><button type="button" onClick={() => { window.location = '/auth/signup'; }} className="btn btn-success">Регистрация</button></div>
+        <div><button type="button" onClick={() => { window.location = '/auth/signup'; }} className="btn btn-primary">Регистрация</button></div>
 
       </div>
     </div>
