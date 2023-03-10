@@ -1,7 +1,8 @@
 import { all } from 'axios';
 import express from 'express';
-import { Theme, Word, Quiz } from '../../db/models';
-import word from '../../db/models/word';
+import {
+  Theme, Word, Quiz,
+} from '../../db/models';
 import {
   isAuth, urlSession,
 } from '../middlewares';
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
   if (req.session.user) {
     res.redirect('/themes');
   } else {
-    res.redirect('/signin');
+    res.redirect('auth/signin');
   }
   // res.render('Layout', {});
 });
@@ -28,9 +29,30 @@ router.get('/new', async (req, res) => {
 
 router.get('/profile', async (req, res) => {
   try {
-    const learned = await Quiz.findAll({ where: { user_id: req.session.user.id } });
-    const words = await Word.findAll();
-    const initState = { learned, words };
+    // const learned = await Quiz.findAll({ where: { user_id: req.session.user.id } }, {
+    //   include: [
+    //     { model: Word },
+    //   ],
+    // });
+
+    const learned = await Quiz.findAll({
+      where: { user_id: req.session.user.id },
+      include: [
+        {
+          model: Word,
+          include: [Theme],
+        },
+      ],
+    });
+
+    const allWords = await Word.findAll({
+      include: [
+        {
+          model: Theme,
+        },
+      ],
+    });
+    const initState = { learned, allWords };
 
     res.render('Layout', initState);
   } catch {

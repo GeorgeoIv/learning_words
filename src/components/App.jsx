@@ -10,7 +10,7 @@ import Words from './Words';
 import Add from './Add';
 
 export default function App({
-  user, themes, words, initState,
+  user, themes, words, learned, allWords,
 }) {
   const [currentUser, setCurrentUser] = useState(user || null);
   return (
@@ -20,7 +20,7 @@ export default function App({
         {/* <Route path="/" element={<SignInForm />} /> */}
         <Route path="/auth/signup" element={<SignUpForm />} />
         <Route path="/auth/signin" element={<SignInForm />} />
-        <Route path="/profile" element={<Profile initState={initState} />} />
+        <Route path="/profile" element={<Profile learned={learned} allWords={allWords} />} />
         <Route path="/new" element={<Add themes={themes} />} />
         <Route path="themes" element={<Themes themes={themes} currentUser={currentUser} />} />
         <Route path="/:theme" element={<Words words={words} currentUser={currentUser} />} />

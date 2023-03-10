@@ -25,6 +25,7 @@ const router = express.Router();
 
 router.post('/new', async (req, res) => {
   try {
+    console.log('add');
     await Word.create(
       req.body,
     );
